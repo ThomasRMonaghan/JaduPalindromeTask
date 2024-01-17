@@ -1,0 +1,11 @@
+check_palindrome:
+    path: /check_palindrome/{input}
+    controller: App\Controller\MainController::checkPalindrome
+
+check_anagram:
+    path: /check_anagram/{str1}/{str2}
+    controller: App\Controller\MainController::checkAnagram
+
+check_pangram:
+    path: /check_pangram/{sentence}
+    controller: App\Controller\MainController::checkPangram
