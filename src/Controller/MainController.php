@@ -5,21 +5,22 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\Checker;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class MainController extends AbstractController
+class MainController extends AbstractController 
 {
     private $checker;
 
-    public function __construct(checker $checker)
+    public function __construct(Checker $checker)
     {
         $this->checker = $checker;
     }
 
     /**
-    * @Route("/check_palindrome/{input}", name="check_palindrome")
-    */
+     * @Route("/check_palindrome/{input}", name="check_palindrome")
+     */
     public function checkPalindrome(string $input): Response
     {
         $isPalindrome = $this->checker->isPalindrome($input);
@@ -27,8 +28,8 @@ class MainController extends AbstractController
     }
 
     /**
-    * @Route("/check_anagram/{input}", name="check_anagram")
-    */
+     * @Route("/check_anagram/{word}/{comparison}", name="check_anagram")
+     */
     public function checkAnagram(string $word, string $comparison): Response
     {
         $isAnagram = $this->checker->isAnagram($word, $comparison);
@@ -36,11 +37,11 @@ class MainController extends AbstractController
     }
 
     /**
-    * @Route("/check_pangram/{input}", name="check_pangram")
-    */
+     * @Route("/check_pangram/{phrase}", name="check_pangram")
+     */
     public function checkPangram(string $phrase): Response
     {
-        $isAnagram = $this->checker->isAnagram($phrase);
-        return new Response($isAnagram ? 'true' : 'false');
+        $isPangram = $this->checker->isPangram($phrase);
+        return new Response($isPangram ? 'true' : 'false');
     }
 }

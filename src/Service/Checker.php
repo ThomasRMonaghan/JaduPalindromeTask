@@ -10,18 +10,21 @@ class Checker
     {
         $sanitizedWord = $this->sanitizeString($word);
 
-        return $sanitizedWord === strrev($sanitizedWord);
+        return $sanitizedWord == strrev($sanitizedWord);
     }
     
     public function isAnagram(string $word, string $comparison) : bool
     {
         $sanitizedWord = $this->sanitizeString($word);
-        $sanitizedComparison = $this->sanatizeString($comparison);
+        $sanitizedComparison = $this->sanitizeString($comparison);
 
-        sort($sanitizedWord);
-        sort($sanitizedComparison);
+        $arrayWord = str_split($sanitizedWord);
+        $arrayComparison = str_split($sanitizedComparison);
 
-        return $sanitizedWord == $sanitizedComparison;
+        sort($arrayWord);
+        sort($arrayComparison);
+
+        return $arrayWord == $arrayComparison;
     }
 
     public function isPangram(string $phrase) : bool
